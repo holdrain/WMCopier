@@ -1,0 +1,37 @@
+train:
+  experiment_name: 'no-noise'
+  batch_size: 32
+  number_of_epochs: 200
+  runs_folder: './runs'
+  start_epoch': 1
+  checkpoint: Watermarkschemes/checkpoints/combined-noise--epoch-400.pyt
+
+  use_vgg: False
+  adversarial_loss: 1.0e-3
+  encoder_loss: 1
+  decoder_loss: 1
+  noise: []
+
+  H: 128
+  W: 128
+  encoder_channels: 64
+  encoder_blocks: 4
+
+  decoder_channels: 64
+  decoder_blocks: 7
+
+  discriminator_channels: 64
+  discriminator_blocks: 4
+  message_length: 30
+
+data:
+  batch_size: 32
+  train_folder: '/mnt/shared/coco2017/train2017'
+  validation_folder: '/mnt/shared/coco2017/val2017'
+  train_num: 10000
+  val_num: 1000
+  cropsize: 128
+
+
+
+  
