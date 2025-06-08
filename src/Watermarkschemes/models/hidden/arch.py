@@ -1,11 +1,10 @@
-import sys
 import numpy as np
 import torch
 import torch.nn as nn
-from conv_bn_relu import ConvBNRelu
-from discriminator import Discriminator
-from noise_layers.noiser import Noiser
-from vgg_loss import VGGLoss
+from .conv_bn_relu import ConvBNRelu
+from .discriminator import Discriminator
+from .noise_layers.noiser import Noiser
+from .vgg_loss import VGGLoss
 
 
 class Encoder(nn.Module):

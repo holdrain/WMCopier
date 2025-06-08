@@ -1,0 +1,28 @@
+=== Experiment Time: 2025-06-08 23:00:35 ===
+
+[Configuration]
+device: cuda:0
+num_images: 5
+batch_size: 20
+milestone: 20
+method: rivaGan
+num_level: 5000
+num_inference_steps: 100
+end_step: 40
+M: 100
+v: 0.01
+beta: 100.0
+eta: 0.0001
+fix: True
+seed: 2025
+save_sample: True
+save_dir: results
+no_forge: False
+config: experiments/ddim_rivagan_no/01-05_10:12/Tconfig.json
+result_file: results/attack_results/rivaGan.txt
+
+[Metrics]
+demo: Bit-Accuracy=0.9938, PSNR=35.4451, FPR=1.0000
+
+============================================================
+

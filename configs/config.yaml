@@ -1,7 +1,7 @@
 # Configuration for training the diffusion model
 
 # Data configuration
-data_path: "AuxiliaryData/celebahq/hidden/000010011110100010101100111011"  # Path to the dataset folder
+data_path: "auxpath/train/rivaGan/diffusiondb/00001001111010001010110011101100"  # Path to the dataset folder
 
 # Model configuration
 diffusion_model: unet  # Name to the model
@@ -25,14 +25,10 @@ pretrained_ckp:   # Path to the pretrained checkpoint for fine-tuning
 amp: true  # Whether to use mixed precision training (AMP)
 
 # Training duration
-train_num: 30000 # Total number of sample in training set
+train_num: 5000 # Total number of sample in training set
 
 # Results and output
-results_folder: newexperiments  # Path where results will be saved
+results_folder: experiments  # Path where results will be saved
 exp_name: ddim_hidden
-
-# FFL (Feature Fusion Loss) settings
-ffl_w: 0.0  # Feature Fusion Loss weight
-ffl_w_start_step: 0  # The step at which Feature Fusion Loss starts
 
 # Other settings can be added as needed

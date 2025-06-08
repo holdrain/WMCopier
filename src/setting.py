@@ -1,7 +1,7 @@
 from functools import partial
 
 import torch
-from diffusers import DDPMPipeline, UNet2DModel
+from diffusers import UNet2DModel
 
 # dataset path
 seed = 2025
@@ -11,7 +11,7 @@ trained_config_file = {
         '5000': '',
     },
     'rivaGan':{
-        '5000': '',
+        '5000': 'experiments/ddim_rivagan_no/01-05_10:12/Tconfig.json',
     },
     'stable_signature':{
         '5000': '',
@@ -35,13 +35,13 @@ trained_config_file = {
 
 # Auxiliary dataset paths
 train_data_path = {
-    'titan': '',
-    'dwtdct': '',
-    'hidden': '',
+    'hidden': 'data/hidden/000011000010010111100011011011',
     'rivaGan': '',
     'rivaGanmul': '',
     'stable_signature': '',
     'treering': '',
+    'titan': '',
+    'dwtdct': '',
 }
 
 # the path of images for forgery evaluations.
@@ -50,13 +50,14 @@ inversion_val_path = {
     "celebahq": "",
     "diffusiondb": "",
     "imagenet": "",
+    "demo": "demo"
 }
 
 # Path to the images used to create the auxiliary dataset
 data_generate_path = {
     "mscoco": "",
     "celebahq": "",
-    "diffusiondb": "",
+    "diffusiondb": "/data/shared/Diffusiondbsub/train",
     "imagenet": "",
 }
 
@@ -68,8 +69,6 @@ images_resolution = {
     "stable_signature": 512,
     "titan": 512,
 }
-
-
 
 # models
 Unet = partial(
@@ -131,18 +130,5 @@ def sigmoid_beta_schedule(timesteps=1000):
     betas = torch.linspace(-6, 6, timesteps)
     return torch.sigmoid(betas) * (beta_end - beta_start) + beta_start
 
-
-
-
-
-
-
-
-
-
-
-
-
 beta_schedule_choices = {'sigmoid':sigmoid_beta_schedule,'linear':linear_beta_schedule,'cosine':cosine_beta_schedule}
-
-model_choices = {"unet": Unet, "unet_l": Unet_l, "unet_s": Unet_s}
+model_choices = {"unet": Unet}

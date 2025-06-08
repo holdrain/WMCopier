@@ -22,10 +22,7 @@ from Watermarkschemes.model_choice import (
     get_rivagan,
     get_stablesignature,
 )
-from Watermarkschemes.models.watermark_anything.inference_utils import (
-    create_random_mask,
-)
-from setting import inversion_val_path, data_generate_path
+from setting import inversion_val_path, data_generate_path, images_resolution
 
 
 def run_stable_signature(opt,device,prompts=None,nowm=False):
@@ -44,7 +41,9 @@ def run_stable_signature(opt,device,prompts=None,nowm=False):
         print(f"generating wm images by prompt{pi}")
         with tqdm(total = opt.img_num,desc=f"generating wm images by {opt.method}") as pbar:
             while (idx < opt.img_num):
-                encoded_imgs = encoder([prompt] * opt.batch_size,negative_prompt=negative_prompt * opt.batch_size,size=opt.size)
+                encoded_imgs = encoder([prompt] * opt.batch_size,
+                                        negative_prompt=negative_prompt * opt.batch_size,
+                                        size=images_resolution['stable_signature'])
                 for pil in encoded_imgs:
                     enimg_path = os.path.join(output_dir,f"{count:04d}"+opt.filetype)
                     pil.save(enimg_path)
@@ -55,7 +54,7 @@ def run_stable_signature(opt,device,prompts=None,nowm=False):
 
 
 def run_hidden(opt,device,message='default'):
-    cfgpath = "/home_new/dongziping/DiffusionWM/src/Watermarkschemes/config/hidden/hidden.yaml"
+    cfgpath = "config/hidden/hidden.yaml"
     cfg = load_config(cfgpath)
     encoder,decoder = get_hiddenmodel(cfg.train,device)
     if opt.test:
@@ -64,7 +63,6 @@ def run_hidden(opt,device,message='default'):
         dataset_dir = data_generate_path[opt.dataset]
     ds = CustomImageFolder(dataset_dir,transform=transforms_dict_encode[opt.method],num=opt.img_num,random_sample=True)
     dl = DataLoader(ds, batch_size = opt.batch_size, shuffle=False, num_workers=0)
-    # assert opt.batch_size == opt.img_num ,"batch size should be smaller than or equal to img_num in hidden mode"
     count = 0
     with tqdm(total=ds.__len__(),desc=f"generating wm images by {opt.method}") as pbar:
         for idx,image in enumerate(dl):
@@ -99,7 +97,6 @@ def run_rivagan(opt,device,message='default'):
             else:
                 target_message = target_message_dict[opt.method] 
             output_dir = new_dir(os.path.join(opt.output_dir,opt.method,opt.dataset,target_message))
-            # print(output_dir)
             encoder,decoder = get_rivagan(wm_text=target_message)
             encoded_img = encoder(image)
             enimg_path = os.path.join(output_dir,f"{(idx % opt.img_num):04d}"+opt.filetype)

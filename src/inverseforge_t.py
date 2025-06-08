@@ -9,9 +9,9 @@ from easydict import EasyDict
 from torch.utils.data import DataLoader
 from decode import load_models
 from data.dataset import CustomImageFolder
-from inversion import pred_latents, sample, sample_zp
+from inversion import pred_latents, sample_zp
 from setting import inversion_val_path, model_choices, trained_config_file,beta_schedule_choices
-from train.trainer import load_pretrained_model
+from trainer import load_pretrained_model
 from utils.helpers import new_dir, parse_yml, set_seeds
 from utils.metrics import psnr_ssim
 from Watermarkschemes.helpers import tensor_norm_dict, transforms_dict_inversion, message_length_dict
@@ -45,7 +45,7 @@ def get_parser():
 
     parser.add_argument('--seed', type=int, default=2025,help='Random seed')
     parser.add_argument('--save_sample',action='store_true',help='saving forged images(bool)')
-    parser.add_argument('--save_dir',type=str, default='/data/shared/Dongziping/sharedcode/DiffForge/data/fake_test/')
+    parser.add_argument('--save_dir',type=str, default='results')
     parser.add_argument('--no_forge',action='store_true')
     return parser
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     set_seeds(args.seed)
     args.config = trained_config_file[args.method][str(args.num_level)]
-    args.result_file = f"nipsresults/attack_results/{args.method}.txt"
+    args.result_file = f"results/attack_results/{args.method}.txt"
     Tconfig = EasyDict(parse_yml(args.config))
 
     if not args.no_forge:
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     else:
         save_dir = os.path.join(args.save_dir,'clean')
 
-    for dataset in ['diffusiondb','mscoco','celebahq','imagenet']:
+    for dataset in ['demo']:
         if args.save_sample:
             save_dir = new_dir(os.path.join(args.save_dir,'forgedimages',args.method,args.num_level,dataset))
         dataset_start_time = time.time()

@@ -10,10 +10,6 @@ from Watermarkschemes.models.dwtdct.arch import InvisibleWatermarker
 from Watermarkschemes.models.hidden.arch import Hidden
 from Watermarkschemes.models.hidden.noise_layers.noiser import Noiser
 from Watermarkschemes.models.stablesignature.utils_model import load_model_from_config
-from Watermarkschemes.models.watermark_anything.data.metrics import (
-    msg_predict_inference,
-)
-from Watermarkschemes.models.watermark_anything.inference_utils import *
 
 
 def get_DwtDct(wm_text,wm_type):

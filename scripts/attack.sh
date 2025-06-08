@@ -2,13 +2,13 @@
 
 # Basic settings
 DEVICES=("cuda:0" "cuda:1" "cuda:2" "cuda:3")  # Using 4 GPUs
-NUM_IMAGES=1000
+NUM_IMAGES=5
 MILESTONE=20
 SEED=2025
 
 # Diffusion parameters
 NUM_INFERENCE_STEPS=100
-METHODS=("rivaGan" "hidden" "dwtdct" "stable_signature")
+METHODS=("rivaGan" "hidden" "dwtdct" "stable_signature" "titan")
 NUM_LEVELS=("5000")
 END_STEP=40
 
@@ -41,7 +41,8 @@ run_experiment() {
         --num_level ${num_level} \
         --fix \
         --beta 100 \
-        --M 100
+        --M 100 \
+        --save_sample
     
     echo "Finished ${method} at level ${num_level} on ${device}"
 }
@@ -67,16 +68,3 @@ device=${DEVICES[0]}  # Distribute across GPUs
 num_level=${NUM_LEVELS[0]}
 run_experiment "$device" "$method" "$num_level"
 
-
-
-# for i in "${!NUM_LEVELS[@]}"; do
-#     num_level=${NUM_LEVELS[$i]}
-#     device=${DEVICES[$i % ${#DEVICES[@]}]}  # 每个 num_level 分一个 GPU
-
-#     for method in "${METHODS[@]}"; do
-#         run_experiment "$device" "$method" "$num_level" &
-#     done
-# done
-
-# wait
-# echo "All experiments completed"

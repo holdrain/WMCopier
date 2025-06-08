@@ -1,5 +1,4 @@
 import argparse
-import sys
 from datetime import datetime
 from torch.utils.tensorboard import SummaryWriter
 from setting import model_choices
@@ -35,12 +34,7 @@ def Options():
 
     # Fine-tuning and EMA settings
     parser.add_argument("--use_ema",action="store_true", help="Enable Exponential Moving Average (EMA) of model weights")
-    
-    # Loss function settings
-    parser.add_argument("--ffl_w", type=float, default=0.0, help="Weight for the Focal Loss")
-    parser.add_argument("--alpha", type=float, default=1.0, help="Weight for the alpha parameter in the model")
-    parser.add_argument("--ffl_w_start_step", type=int, default=0, help="Step at which focal loss weight starts")
-    
+
     # Training continuation settings
     parser.add_argument('--pretrained_ckp',default=None, help="Path to the pretrained checkpoint")
     parser.add_argument("--resume_from", type=int, default=None, help="resume from which step, e.g. if equals N, then `model-N.pt` will be loaded from the experiment result directory")
@@ -76,8 +70,6 @@ if __name__ == "__main__":
         train_lr=Tconfig.learning_rate,
         lr_scheduler=Tconfig.lr_scheduler,
         gradient_accumulate_every= Tconfig.gradient_accumulate_every,
-        ffl_w=Tconfig.ffl_w,
-        ffl_w_start_step=Tconfig.ffl_w_start_step,
         use_ema = Tconfig.use_ema,
         train_num_steps = Tconfig.train_num_steps,
         ema_update_every = Tconfig.ema_update_every,
