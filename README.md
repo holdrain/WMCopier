@@ -62,7 +62,7 @@ We do not publish the checkpoints here, following discussions with Amazon’s AG
 
 ---
 
-## 📄 Citation
+<!-- ## 📄 Citation
 
 If you find this code useful for your research, please cite our paper:
 
@@ -75,6 +75,6 @@ If you find this code useful for your research, please cite our paper:
   doi     = {10.48550/arXiv.2503.22330},
   url     = {https://arxiv.org/abs/2503.22330}
 }
-```
+``` -->
 
----
+<!-- --- -->
