@@ -1,46 +1,80 @@
+
 # WMCopier: Forging Invisible Image Watermarks on Arbitrary Images
 
-Official implementation for the paper:  
-**WMCopier: Forging Invisible Image Watermarks on Arbitrary Images**
+This repository explores attacks against invisible watermarking schemes using diffusion models, providing practical tools for watermark forgery and evaluation.
 
-<!-- > (Paper link: [arXiv/xxxx.xxxxx](https://arxiv.org/abs/xxxx.xxxxx)) -->
-
-The project explores attacks against invisible watermarking schemes using diffusion models, and provides tools for watermark forgery.
-
----
-
-## Getting Started
-
-#### Generate Watermarked Auxiliary Dataset
-Create the auxiliary dataset by running the script:
-```bash
-bash  scripts/create_dataset.sh
-```
-
-#### Train a diffusion model on Auxiliary Dataset
-Before training, please update the train_data_path variable in setting.py with the path to your auxiliary dataset.
-
-And then train a watermarked unconditional diffusion model by running the script:
-```bash
-bash  scripts/train.sh
-```
-Alternatively, you may use our pretrained model(trained d on 5000 watermarked images(RivaGan)) by downloading the checkpoints provided [here](https://drive.google.com/file/d/1Hq4bLlxyIIZcVllrD4TcwTbhOD2iczOY/view?usp=drive_link).
-
-
-
-#### Perform our attack
-
-
-
-
-
-
+<p align="center">
+  <img src="framework.png" alt="Framework of WMCopier" width="95%">
+</p>
 
 ---
 
-## Reference
+## 🚀 Getting Started
 
-The training scripts for the diffusion model are based on the [HuggingFace tutorial](https://huggingface.co/docs/diffusers/tutorials/basic_training).
+### 0. Install Requirements
 
-The implement of distortions are adapted from the [Tree-ring-watermark](https://github.com/YuxinWenRick/tree-ring-watermark).
+It is recommended to use **Python 3.9+** and a virtual environment.  
+To install all required dependencies, simply run:
 
+```bash
+pip install -r requirements.txt
+```
+
+### 1. Generate Watermarked Auxiliary Dataset
+
+To create the auxiliary dataset, run:
+```bash
+bash scripts/create_dataset.sh
+```
+
+### 2. Train a Diffusion Model on the Auxiliary Dataset
+
+Before training, update the `train_data_path` variable in `setting.py` with the path to your auxiliary dataset.
+
+Then train the watermarked unconditional diffusion model:
+```bash
+bash scripts/train.sh
+```
+
+Alternatively, you can use our pretrained model (trained on 5,000 watermarked images with RivaGAN) by downloading the checkpoints from [Google Drive](https://drive.google.com/file/d/1ymPsx4VAY-jtZuljX9S0v9FuiiZRNmNe/view?usp=drive_link).
+
+After downloading, place the checkpoint files in:
+```
+experiments/ddim_rivagan_no/01-05_10:12/ckp
+```
+
+### 3. Run the Forgery Attack
+
+To forge watermarks on arbitrary images, run:
+```bash
+bash scripts/attack.sh
+```
+
+---
+### 4. Attack on Real-World Watermark
+We do not publish the checkpoints here, following discussions with Amazon’s AGI Team. For more details, please refer to the "Broad Impact" section in our paper.
+
+---
+## 🔗 Reference
+
+- Training scripts for the diffusion model are based on the [HuggingFace Diffusers tutorial](https://huggingface.co/docs/diffusers/tutorials/basic_training).
+- Distortion implementations are adapted from [Tree-ring-watermark](https://github.com/YuxinWenRick/tree-ring-watermark).
+
+---
+
+## 📄 Citation
+
+If you find this code useful for your research, please cite our paper:
+
+```bibtex
+@article{dong2024wmcopier,
+  title   = {WMCopier: Forging Invisible Image Watermarks on Arbitrary Images},
+  author  = {Ziping Dong and others},
+  journal = {arXiv preprint arXiv:2503.22330},
+  year    = {2024},
+  doi     = {10.48550/arXiv.2503.22330},
+  url     = {https://arxiv.org/abs/2503.22330}
+}
+```
+
+---
