@@ -18,7 +18,7 @@ def Options():
     # Image and batch size settings
     parser.add_argument('--data_path', type=str, help="Path to the data directory")
     parser.add_argument("--train_batchsize", type=int, default=32, help="Training batch size")
-    parser.add_argument("--num_samples", type=int, default=32, help="Evaluation batch size")
+    parser.add_argument("--num_samples", type=int, default=25, help="Evaluation batch size")
 
     # Model
     parser.add_argument("--image_size", type=int, required=True, help="Size of the input images")
@@ -27,8 +27,8 @@ def Options():
     # Learning rate and optimization settings
     parser.add_argument("--learning_rate", type=float, help="Learning rate for optimizer")
     parser.add_argument("--lr_scheduler", type=str, default="no", help="Learning rate scheduler (default: 'no')")
-    parser.add_argument('--train_num_steps', type=int, default=700000, help="Number of total training steps")
-    parser.add_argument('--gradient_accumulate_every', type=int, default=2, help="Number of steps to accumulate gradients before updating weights")
+    parser.add_argument('--train_num_steps', type=int, default=20000, help="Number of total training steps")
+    parser.add_argument('--gradient_accumulate_every', type=int, default=4, help="Number of steps to accumulate gradients before updating weights")
     parser.add_argument('--ema_decay', type=float, default=0.995, help="Exponential moving average decay rate")
     parser.add_argument('--amp', action='store_true', help="Whether to enable mixed precision training")
 

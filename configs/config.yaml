@@ -6,7 +6,7 @@ data_path: "auxpath/train/rivaGan/diffusiondb/00001001111010001010110011101100" 
 # Model configuration
 diffusion_model: unet  # Name to the model
 learning_rate: 1e-4  # Learning rate for optimizer
-lr_scheduler: "cosine"  # Learning rate scheduler, options: ["step", "cosine", "exponential"]
+lr_scheduler: "linear"  # Learning rate scheduler, options: ["step", "cosine", "exponential"]
 use_ema: False  # Whether to use Exponential Moving Average (EMA) for model parameters
 
 # Training settings

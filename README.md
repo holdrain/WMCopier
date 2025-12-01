@@ -13,21 +13,34 @@ This repository explores attacks against invisible watermarking schemes using di
 
 ### 0. Install Requirements
 
-It is recommended to use **Python 3.9+** and a virtual environment.  
-To install all required dependencies, simply run:
+First, create and activate a conda environment with **Python 3.9+**:
 
+```bash
+conda create -n wmcopier python=3.9
+conda activate wmcopier
+```
+Then install all required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 1. Generate Watermarked Auxiliary Dataset
 
-To create the auxiliary dataset, run:
-```bash
-bash scripts/create_dataset.sh
-```
+You can easily generate watermarked images using our toolkit:
 
-### 2. Train a Diffusion Model on the Auxiliary Dataset
+👉 **https://github.com/holdrain/WMSuite.git**
+
+WMSuite currently supports **six watermarking algorithms**:
+
+- **HiDDeN**
+- **DwTDCT**
+- **RivaGAN**
+- **StegaStamp**
+- **VINE**
+- **Stable Signature**
+
+
+### 2. Train a diffusion attacker
 
 Before training, update the `train_data_path` variable in `setting.py` with the path to your auxiliary dataset.
 
@@ -36,25 +49,39 @@ Then train the watermarked unconditional diffusion model:
 bash scripts/train.sh
 ```
 
-Alternatively, you can use our pretrained model (trained on 5,000 watermarked images with RivaGAN) by downloading the checkpoints from [Google Drive](https://drive.google.com/file/d/1ymPsx4VAY-jtZuljX9S0v9FuiiZRNmNe/view?usp=drive_link).
+Alternatively, you can use our pretrained model (trained on 5,000 watermarked images). Download the checkpoint package from [Google Drive](https://drive.google.com/file/d/1uROeoV2l3dcyGCGS-vB3_pv_UXCKymEM/view?usp=sharing).
 
-After downloading, place the checkpoint files in:
+After downloading, unzip the file and place the extracted folders so that your project structure looks like:
+
+
 ```
-experiments/ddim_rivagan_no/01-05_10:12/ckp
+-WMCopier
+  -checkpoints
+  -configs
+  ...
 ```
 
-### 3. Run the Forgery Attack
+### 3. Perform the Forgery Attack
 
-To forge watermarks on arbitrary images, run:
+You can try our forgery attack with a simple example on RivaGAN watermark by running the notebook: **`demo/forge.ipynb`**
+
+For large-scale experiments on an entire image folder, run:
+
 ```bash
 bash scripts/attack.sh
 ```
 
 ---
 ### 4. Attack on Real-World Watermark
+
 We do not publish the checkpoints here, following discussions with Amazon’s AGI Team. For more details, please refer to the "Broad Impact" section in our paper.
 
----
+
+
+
+
+
+
 ## 🔗 Reference
 
 - Training scripts for the diffusion model are based on the [HuggingFace Diffusers tutorial](https://huggingface.co/docs/diffusers/tutorials/basic_training).

@@ -4,4 +4,12 @@
 *.pyt
 *.pth
 *.png
+*.jpg
+*.jpeg
+*.bmp
+*.tiff
+*.log
 __pycache__/
+.vscode/
+checkpoints
+experiments

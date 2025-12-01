@@ -1,12 +1,10 @@
 import glob
 import os
-
-import PIL
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 import random
-from utils.helpers import set_seeds
+from src.utils.helpers import set_seeds
 
 
 class CustomImageFolder(Dataset):

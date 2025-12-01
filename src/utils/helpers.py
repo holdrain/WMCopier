@@ -209,15 +209,6 @@ def get_lr_scheduler(Tconfig, optimizer, length):
     return lr_scheduler
 
 
-def path_adapter(path):
-    """
-    Input path should be absolute path!
-    """
-    cur_parts = os.getcwd().split(os.sep)[1:]
-    parts = path.split(os.sep)[1:]
-    parts[0] = cur_parts[0]
-    return os.path.join("/", *parts)
-
 
 def get_image_count_in_directory(path):
     if not os.path.exists(path):

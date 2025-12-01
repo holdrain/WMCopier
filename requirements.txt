@@ -11,3 +11,9 @@ matplotlib>=3.9.3
 pandas>=2.2.3
 opencv-python>=4.10.0.84
 einops>=0.8.0
+easydict==1.13
+scikit-image==0.25.2
+kornia
+tensorboard
+accelerate
+ema-pytorch

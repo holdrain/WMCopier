@@ -1,5 +1,3 @@
-from skimage.metrics import peak_signal_noise_ratio as psnr
-import torch
 import kornia
 
 def psnr_ssim(batch_a, batch_b):

@@ -8,14 +8,13 @@ from diffusers import DDIMPipeline, DDIMScheduler
 from ema_pytorch import EMA
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingLR, ExponentialLR, StepLR
-import torch.utils
 from torch.utils.data import DataLoader
 from torchvision import transforms, utils
 from tqdm.auto import tqdm
 
-from data.dataset import CustomImageFolder
-from utils.helpers import *
-from setting import beta_schedule_choices
+from src.dataset import CustomImageFolder
+from src.utils.helpers import *
+from src.setting import beta_schedule_choices
 
 def get_lr_scheduler(optimizer, scheduler_type, **kwargs):
     """
@@ -121,8 +120,6 @@ class Trainer:
         gradient_accumulate_every=1,
         train_lr=1e-4,
         lr_scheduler="no",
-        ffl_w=0.0,
-        ffl_w_start_step=0,
         use_ema=False,
         train_num_steps=100000,
         ema_update_every=10,
@@ -162,8 +159,8 @@ class Trainer:
         # beta schedule
         betas = beta_schedule_choices[beta_schedule]()
         self.noise_scheduler = DDIMScheduler(num_train_timesteps=1000,trained_betas=betas)
-        # sampling and training hyperparameters
 
+        # sampling and training hyperparameters
         assert has_int_squareroot(
             num_samples
         ), "number of samples must have an integer square root"
@@ -172,6 +169,7 @@ class Trainer:
 
         self.batch_size = train_batch_size
         self.gradient_accumulate_every = gradient_accumulate_every
+
         assert (
             train_batch_size * gradient_accumulate_every
         ) >= 16, f"your effective batch size (train_batch_size x gradient_accumulate_every) should be at least 16 or above"
@@ -191,7 +189,6 @@ class Trainer:
         self.ds = CustomImageFolder(folder, transform=transform, num=train_num, random_sample=True)
         if self.accelerator.is_main_process: 
             print(f"train on {len(self.ds)} images~")
-            assert (len(self.ds) >= 10), "you should have at least 10 images in your folder. at least 10k images recommended"
 
         dl = DataLoader(
             self.ds,
@@ -292,36 +289,20 @@ class Trainer:
                     data = next(self.dl).to(device)
                     noise = torch.randn_like(data).to(device)
                     with self.accelerator.autocast():
-                        timesteps = torch.randint(
-                            0,
-                            self.noise_scheduler.num_train_timesteps,
-                            (data.shape[0],),
+                        timesteps = torch.randint(0,self.noise_scheduler.num_train_timesteps,(data.shape[0],),
                             device=data.device,
                         ).long()
-                        noisy_images = self.noise_scheduler.add_noise(
-                            data, noise, timesteps
-                        )
-                        noise_pred = self.model(
-                            noisy_images, timesteps, return_dict=True
-                        ).sample
+                        noisy_images = self.noise_scheduler.add_noise(data, noise, timesteps)
+                        noise_pred = self.model(noisy_images, timesteps, return_dict=True).sample
 
-                        loss = self.criterion(
-                            noise_pred, noise
-                        )
+                        loss = self.criterion(noise_pred, noise)
                         loss = loss / self.gradient_accumulate_every
                         total_loss += loss.item()
 
                     self.accelerator.backward(loss)
 
-                pbar.set_description(
-                    f"loss: {total_loss:.4f}"
-                )
-                self.accelerator.log(
-                    {
-                        "loss": total_loss,
-                    },
-                    step=self.step,
-                )
+                pbar.set_description(f"loss: {loss:.4f}")
+                self.accelerator.log({"loss": total_loss,},step=self.step)
 
                 accelerator.wait_for_everyone()
                 accelerator.clip_grad_norm_(self.model.parameters(), self.max_grad_norm)
@@ -337,9 +318,7 @@ class Trainer:
                         self.ema.update()
 
                     # save sample images and model
-                    if self.step != 0 and divisible_by(
-                        self.step, self.save_and_sample_every
-                    ):
+                    if self.step != 0 and divisible_by(self.step, self.save_and_sample_every):
                         eval_model = (
                             self.ema.ema_model.eval()
                             if self.ema is not None
@@ -358,7 +337,7 @@ class Trainer:
                                     batches,
                                 )
                             )
-                        # print(torch.cat(all_images_list).shape)
+
                         utils.save_image(torch.cat(all_images_list).permute(0,3,1,2),os.path.join(self.samples_results_folder, f"sample-{milestone}.png"),nrow=4),
                         self.save(milestone)
 

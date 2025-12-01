@@ -1,76 +1,25 @@
 from functools import partial
-
 import torch
 from diffusers import UNet2DModel
 
-# dataset path
 seed = 2025
-# Specify the path to the config file of the pretrained diffusion model here.
-trained_config_file = {
-    'hidden':{
-        '5000': '',
-    },
-    'rivaGan':{
-        '5000': 'experiments/ddim_rivagan_no/01-05_10:12/Tconfig.json',
-    },
-    'stable_signature':{
-        '5000': '',
-    },
-    'titan':{
-        '5000': '',
-    },
-    'dwtdct':{
-        '5000': '',
-    },
-    'rivaGanmul':{
-        '10': '',
-        '50': '',
-        '100': '',
-        '1000': '',
-    },
-    'treering':{
-        '5000': '',
-    },
-}
-
-# Auxiliary dataset paths
-train_data_path = {
-    'hidden': 'data/hidden/000011000010010111100011011011',
-    'rivaGan': '',
-    'rivaGanmul': '',
-    'stable_signature': '',
-    'treering': '',
-    'titan': '',
-    'dwtdct': '',
-}
-
-# the path of images for forgery evaluations.
-inversion_val_path = {
-    "mscoco": "",
-    "celebahq": "",
-    "diffusiondb": "",
-    "imagenet": "",
-    "demo": "demo"
-}
-
-# Path to the images used to create the auxiliary dataset
-data_generate_path = {
-    "mscoco": "",
-    "celebahq": "",
-    "diffusiondb": "/data/shared/Diffusiondbsub/train",
-    "imagenet": "",
-}
 
 images_resolution = {
     "dwtdct": 256,
     "hidden": 128,
     "rivaGan": 256,
-    "rivaGanmul":256,
     "stable_signature": 512,
     "titan": 512,
 }
 
-# models
+target_message_dict = {
+    "dwtdct":'00001100001001011110001101101110',
+    "hidden":'000010011110100010101100111011',
+    "rivaGan":'00001001111010001010110011101100',
+    "stable_signature":'111010110101000001010111010011010100010000100111',
+}
+
+# model architecture
 Unet = partial(
     UNet2DModel,  # the target image resolution
     in_channels=3,  # the number of input channels, 3 for RGB images
