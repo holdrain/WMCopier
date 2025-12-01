@@ -1,0 +1,14 @@
+prompt: |
+  a portrait of a majestic lion with a golden mane, sitting on a rock in the savannah during sunset, highly detailed, photorealistic, 8k resolution, vibrant colors, dramatic lighting, sharp focus, intricate textures, cinematic composition
+  a landscape of a serene mountain lake surrounded by pine trees and snow-capped peaks, reflecting the clear blue sky, ultra HD, vivid colors, breathtaking scenery, peaceful atmosphere, high detail, wide angle view
+  an epic fantasy scene of a dragon soaring over a medieval castle perched on a cliff, with stormy skies and lightning in the background, highly detailed, dynamic lighting, dramatic clouds, intricate scales on the dragon, cinematic quality, 4k resolution
+  macro shot of a dew-covered spider web glistening in the early morning light, with a blurred forest background, extreme close-up, high detail, sharp focus on the web, vibrant colors, bokeh effect, nature photography
+  quadcopter drone flying over a futuristic cityscape at night, with neon lights and towering skyscrapers, highly detailed, cyberpunk aesthetic, vibrant colors, dynamic lighting, sharp focus, cinematic composition, 8k resolution
+  convolutional neural network architecture diagram, showcasing layers, connections, and data flow, high detail, clear labels, vibrant colors, modern design, infographic style, sharp focus
+  overgrown abandoned amusement park with rusted rides and faded colors, surrounded by dense forest, eerie atmosphere, high detail, dramatic lighting, cinematic quality, 4k resolution
+  minimalist interior design of a modern living room with sleek furniture, neutral colors, and large windows letting in natural light, high detail, sharp focus, contemporary style, architectural photography
+  japanese garden in full bloom during spring, with cherry blossom trees, koi pond, and traditional wooden bridge, highly detailed, vibrant colors, serene atmosphere, sharp focus, nature photography
+  running through a field of sunflowers under a bright blue sky, with a joyful expression and arms outstretched, high detail, vibrant colors, dynamic lighting, sharp focus, cinematic composition
+
+negetive_prompt: |
+  low quality ugly

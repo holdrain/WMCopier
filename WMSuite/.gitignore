@@ -1,0 +1,109 @@
+# ============================================
+# Ignore Python cache / build artifacts
+# ============================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyd
+*.so
+*.dll
+
+# Byte-compiled / optimized / DLL files
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# ============================================
+# Ignore large machine learning model weights
+# (PyTorch, TensorFlow, HuggingFace, Diffusers)
+# ============================================
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.h5
+*.tflite
+*.pb
+*.safetensors
+*.onnx
+*.d2i
+*.model
+
+# HuggingFace model caches / weights
+huggingface/
+~/.cache/huggingface/
+hf_cache/
+transformers_cache/
+datasets_cache/
+
+# Diffusers pipelines / checkpoints
+diffusers/
+*.msgpack
+
+# ============================================
+# Ignore data & large files (>50MB common formats)
+# (无法直接按大小过滤，只能按常见后缀)
+# ============================================
+*.mp4
+*.avi
+*.mkv
+*.webm
+*.mov
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tiff
+*.gif
+
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+*.npy
+*.npz
+*.pkl
+*.pickle
+
+*.wav
+*.mp3
+*.flac
+
+# ============================================
+# Logs / Temp files / Experiments / Outputs
+# ============================================
+*.log
+
+checkpoints/
+outputs/
+
+
+# Temporary files
+tmp/
+temp/
+cache/
+*.tmp
+*.swp
+
+# ============================================
+# IDE / Editor specific
+# ============================================
+# VSCode
+.vscode/
+sampled_train_5000/
+
+# ============================================
+# OS Generated files
+# ============================================
+.DS_Store
+Thumbs.db
