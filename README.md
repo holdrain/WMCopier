@@ -77,12 +77,6 @@ bash scripts/attack.sh
 We do not publish the checkpoints here, following discussions with Amazon’s AGI Team. For more details, please refer to the "Broad Impact" section in our paper.
 
 
-
-
-
-
-
 ## 🔗 Reference
 
 - Training scripts for the diffusion model are based on the [HuggingFace Diffusers tutorial](https://huggingface.co/docs/diffusers/tutorials/basic_training).
-- Distortion implementations are adapted from [Tree-ring-watermark](https://github.com/YuxinWenRick/tree-ring-watermark).

@@ -7,7 +7,6 @@ https://github.com/CompVis/taming-transformers
 """
 
 import itertools
-import sys
 from contextlib import contextmanager, nullcontext
 from functools import partial
 
@@ -23,19 +22,19 @@ from torchvision.utils import make_grid
 from tqdm import tqdm
 
 
-from wm.algorithms.models.stablesignature.src.ldm.models.autoencoder import AutoencoderKL, IdentityFirstStage
-from wm.algorithms.models.stablesignature.src.ldm.models.diffusion.ddim import DDIMSampler
-from wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import (
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.models.autoencoder import AutoencoderKL, IdentityFirstStage
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.models.diffusion.ddim import DDIMSampler
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import (
     extract_into_tensor,
     make_beta_schedule,
     noise_like,
 )
-from wm.algorithms.models.stablesignature.src.ldm.modules.distributions.distributions import (
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.distributions.distributions import (
     DiagonalGaussianDistribution,
     normal_kl,
 )
-from wm.algorithms.models.stablesignature.src.ldm.modules.ema import LitEma
-from wm.algorithms.models.stablesignature.src.ldm.util import (
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.ema import LitEma
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.util import (
     count_params,
     default,
     exists,

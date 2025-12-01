@@ -3,11 +3,11 @@ import pytorch_lightning as pl
 import torch.nn.functional as F
 from contextlib import contextmanager
 
-from wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.model import Encoder, Decoder
-from wm.algorithms.models.stablesignature.src.ldm.modules.distributions.distributions import DiagonalGaussianDistribution
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.model import Encoder, Decoder
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.distributions.distributions import DiagonalGaussianDistribution
 
-from wm.algorithms.models.stablesignature.src.ldm.util import instantiate_from_config
-from wm.algorithms.models.stablesignature.src.ldm.modules.ema import LitEma
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.util import instantiate_from_config
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.ema import LitEma
 
 
 class AutoencoderKL(pl.LightningModule):

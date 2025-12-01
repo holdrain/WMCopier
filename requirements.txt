@@ -17,3 +17,5 @@ kornia
 tensorboard
 accelerate
 ema-pytorch
+pytorch_lightning
+peft

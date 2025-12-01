@@ -54,3 +54,4 @@ transformers==4.53.3
 invisible-watermark==0.2.0
 peft==0.18.0
 onnxruntime==1.23.2
+open-clip-torch

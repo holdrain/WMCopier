@@ -5,7 +5,7 @@ import numpy as np
 import torch as th
 import torch.nn as nn
 import torch.nn.functional as F
-from wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import (
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import (
     checkpoint,
     conv_nd,
     linear,
@@ -14,8 +14,8 @@ from wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util 
     normalization,
     timestep_embedding,
 )
-from wm.algorithms.models.stablesignature.src.ldm.modules.attention import SpatialTransformer
-from wm.algorithms.models.stablesignature.src.ldm.util import exists
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.attention import SpatialTransformer
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.util import exists
 
 
 # dummy replace

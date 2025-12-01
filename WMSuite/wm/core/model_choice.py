@@ -32,8 +32,8 @@ def get_vine(device):
     return encoder,decoder
 
 def get_Stegastamp(device):
-    encoder_path = "wm/algorithms/checkpoints/stegastamp/AFHQ_cat2dog_256x256_encoder.pth"
-    decoder_path = "wm/algorithms/checkpoints/stegastamp/AFHQ_cat2dog_256x256_decoder.pth"
+    encoder_path = "WMSuite/wm/algorithms/checkpoints/stegastamp/AFHQ_cat2dog_256x256_encoder.pth"
+    decoder_path = "WMSuite/wm/algorithms/checkpoints/stegastamp/AFHQ_cat2dog_256x256_decoder.pth"
     IMAGE_RESOLUTION = 256  
     IMAGE_CHANNELS = 3
 
@@ -85,15 +85,15 @@ def get_hiddenmodel(cfg,device):
 
 def get_stablesignature(device,nowm=False):
     
-    ldm_config = "wm/algorithms/config/stable_signature/v2-inference.yaml"
-    ldm_ckpt = "wm/algorithms/checkpoints/stable_signature/v2-1_512-ema-pruned.ckpt"
+    ldm_config = "WMSuite/wm/algorithms/config/stable_signature/v2-inference.yaml"
+    ldm_ckpt = "WMSuite/wm/algorithms/checkpoints/stable_signature/v2-1_512-ema-pruned.ckpt"
     print(f'>>> Building LDM model with config {ldm_config} and weights from {ldm_ckpt}...')
     config = OmegaConf.load(f"{ldm_config}")
     ldm_ae = load_model_from_config(config, device, ldm_ckpt)
     ldm_aef = ldm_ae.first_stage_model
     ldm_aef.eval()
     if not nowm:
-        state_dict = torch.load("wm/algorithms/checkpoints/stable_signature/sd2_decoder.pth",map_location='cpu',weights_only=False)
+        state_dict = torch.load("WMSuite/wm/algorithms/checkpoints/stable_signature/sd2_decoder.pth",map_location='cpu',weights_only=False)
         unexpected_keys = ldm_aef.load_state_dict(state_dict, strict=False)
 
     # huggingface stable diffusion path
@@ -116,7 +116,7 @@ def get_stablesignature(device,nowm=False):
             x should be watermarked images tensor
             return watermark message
         '''
-        msg_extractor = torch.jit.load("wm/algorithms/checkpoints/stable_signature/dec_48b_whit.torchscript.pt",map_location='cpu').to(device)
+        msg_extractor = torch.jit.load("WMSuite/wm/algorithms/checkpoints/stable_signature/dec_48b_whit.torchscript.pt",map_location='cpu').to(device)
         msg = msg_extractor(x) # b c h w -> b k
         msg = (msg>0).float()
         return msg

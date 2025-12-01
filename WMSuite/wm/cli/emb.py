@@ -1,8 +1,7 @@
 import argparse
 
-import torch
-from wm.core.helpers import *
-from wm.core.encode import *
+from WMSuite.wm.core.helpers import *
+from WMSuite.wm.core.encode import *
 
 def Options():
     parser = argparse.ArgumentParser(description="create dataset for few-shot learning...")

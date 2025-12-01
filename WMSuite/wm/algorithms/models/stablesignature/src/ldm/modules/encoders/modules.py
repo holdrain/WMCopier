@@ -1,7 +1,7 @@
 import open_clip
 import torch
 import torch.nn as nn
-from wm.algorithms.models.stablesignature.src.ldm.util import count_params, default
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.util import count_params, default
 from torch.utils.checkpoint import checkpoint
 from transformers import CLIPTextModel, CLIPTokenizer, T5EncoderModel, T5Tokenizer
 

@@ -1,6 +1,6 @@
 import argparse
-from  wm.core.helpers import *
-from wm.core.decode import *
+from  WMSuite.wm.core.helpers import *
+from WMSuite.wm.core.decode import *
 
 
 def Options():

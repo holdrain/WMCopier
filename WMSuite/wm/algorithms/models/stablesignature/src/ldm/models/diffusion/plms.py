@@ -3,10 +3,9 @@
 import torch
 import numpy as np
 from tqdm import tqdm
-from functools import partial
 
-from wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import make_ddim_sampling_parameters, make_ddim_timesteps, noise_like
-from wm.algorithms.models.stablesignature.src.ldm.models.diffusion.sampling_util import norm_thresholding
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import make_ddim_sampling_parameters, make_ddim_timesteps, noise_like
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.models.diffusion.sampling_util import norm_thresholding
 
 
 class PLMSSampler(object):

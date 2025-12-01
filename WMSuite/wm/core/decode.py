@@ -21,7 +21,7 @@ def load_models(method, device):
     if method == 'dwtdct':
         return get_DwtDct(wm_text=message_dict[method], wm_type='bits')
     elif method == 'hidden':
-        cfgpath = "wm/algorithms/config/hidden/hidden.yaml"
+        cfgpath = "WMSuite/wm/algorithms/config/hidden/hidden.yaml"
         cfg = load_config(cfgpath)
         return get_hiddenmodel(cfg.train, device)
     elif method == 'stegastamp':

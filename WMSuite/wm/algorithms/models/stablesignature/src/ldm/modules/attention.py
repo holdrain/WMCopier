@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from torch import nn, einsum
 from einops import rearrange, repeat
 from typing import Optional, Any
-from wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import checkpoint
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import checkpoint
 
 
 try:

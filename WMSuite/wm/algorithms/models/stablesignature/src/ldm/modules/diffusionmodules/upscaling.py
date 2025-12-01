@@ -3,8 +3,8 @@ import torch.nn as nn
 import numpy as np
 from functools import partial
 
-from wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import extract_into_tensor, make_beta_schedule
-from wm.algorithms.models.stablesignature.src.ldm.util import default
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.diffusionmodules.util import extract_into_tensor, make_beta_schedule
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.util import default
 
 
 class AbstractLowScaleModel(nn.Module):

@@ -4,7 +4,7 @@ train:
   number_of_epochs: 200
   runs_folder: './runs'
   start_epoch': 1
-  checkpoint: /home/dongziping/WMSuite/wm/algorithms/checkpoints/hidden/no-noise--epoch-400.pyt
+  checkpoint: WMSuite/wm/algorithms/checkpoints/hidden/no-noise--epoch-400.pyt
 
   use_vgg: False
   adversarial_loss: 1.0e-3

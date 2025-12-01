@@ -5,7 +5,7 @@ import torch.nn as nn
 import numpy as np
 from einops import rearrange
 from typing import Optional, Any
-from wm.algorithms.models.stablesignature.src.ldm.modules.attention import MemoryEfficientCrossAttention
+from WMSuite.wm.algorithms.models.stablesignature.src.ldm.modules.attention import MemoryEfficientCrossAttention
 
 try:
     import xformers

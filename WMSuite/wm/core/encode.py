@@ -4,7 +4,6 @@ import random
 import torchvision.utils as vutils
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
-from torchvision import transforms
 
 from WMSuite.wm.core.dataset import CustomImageFolder
 from WMSuite.wm.core.helpers import (
@@ -79,7 +78,7 @@ def save_clean_and_wm(clean_tensor, encoded_tensor, clean_path, wm_path):
 
 
 def run_stable_signature(opt):
-    prompts_list, negative_prompts = load_prompts("wm/algorithms/config/stable_signature/prompt.yml")
+    prompts_list, negative_prompts = load_prompts("WMSuite/wm/algorithms/config/stable_signature/prompt.yml")
     message = message_dict[opt.method]
 
     print(prompts_list, negative_prompts)
@@ -120,7 +119,7 @@ def run_stable_signature(opt):
 
 
 def run_hidden(opt, message_type="default"):
-    cfg = load_config("wm/algorithms/config/hidden/hidden.yaml")
+    cfg = load_config("WMSuite/wm/algorithms/config/hidden/hidden.yaml")
     encoder, _ = get_hiddenmodel(cfg.train, opt.device)
 
     ds = CustomImageFolder(opt.dataset, transform=transforms_dict_encode[opt.method], num=opt.num)
