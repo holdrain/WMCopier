@@ -1,7 +1,9 @@
 
 # WMCopier: Forging Invisible Image Watermarks on Arbitrary Images
+The official code of NeurIPS 2025 paper [WMCopier: Forging Invisible Image Watermarks on Arbitrary Images](https://arxiv.org/abs/2503.22330).
 
 This repository explores attacks against invisible watermarking schemes using diffusion models, providing practical tools for watermark forgery and evaluation.
+
 
 <p align="center">
   <img src="framework.png" alt="Framework of WMCopier" width="95%">
