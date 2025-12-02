@@ -90,10 +90,9 @@ def run_stable_signature(opt):
     encoder, _ = get_stablesignature(opt.device, nowm=False)
 
     count = 0
-    while count < opt.num:
-        prompts = random.choices(prompts_list, k=opt.batch_size)
-
-        with tqdm(total=opt.num, desc=f"generating wm images by {opt.method}") as pbar:
+    with tqdm(total=opt.num, desc=f"generating wm images by {opt.method}") as pbar:
+        while count < opt.num:
+            prompts = random.choices(prompts_list, k=opt.batch_size)
             set_seeds(count)
             clean_imgs = encoder_nowm(
                 prompts,

@@ -3,8 +3,8 @@
 *.pt
 *.pyt
 *.pth
-*.png
 *.jpg
+*.png
 *.jpeg
 *.bmp
 *.tiff
