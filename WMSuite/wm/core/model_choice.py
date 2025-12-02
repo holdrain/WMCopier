@@ -20,14 +20,11 @@ def get_DwtDct(wm_text,wm_type):
     return encoder,decoder
 
 def get_vine(device):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    set_seed(42)
 
     encoder = VINE_Turbo.from_pretrained('Shilin-LU/VINE-B-Enc')
-    encoder.to(device)
-
     decoder = CustomConvNeXt.from_pretrained('Shilin-LU/VINE-B-Dec')
-    decoder.to(device)
+    encoder = encoder.to(device)
+    decoder = decoder.to(device)
     
     return encoder,decoder
 
