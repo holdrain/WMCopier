@@ -122,7 +122,7 @@ We do not publish the checkpoints here, following discussions with Amazon’s AG
 
 ### 5. Update
 
-We have recently added our performance results on **StegaStamp** and **VINE**:
+We have recently added our performance results on **StegaStamp** and **VINE**(train diffusion model on diffusiondb and test on other domain dataset):
 
 1. StegaStamp Results:
 
@@ -143,10 +143,7 @@ We have recently added our performance results on **StegaStamp** and **VINE**:
 | ImageNet     | 35.58  | 93.40%   | 96.40% |
 
 
-The results show that WMCopier's strong generability.  
-Residual-based approaches assume that the residual extracted from one watermarked image can be added to another clean image and still be detected.
-
-This assumption does not hold for all watermarking methods, which limits the performance of residual-based approaches on several watermakring algorithms.
+The results show that WMCopier's strong generability. Residual-based approaches assume that the residual extracted from one watermarked image can be added to another clean image and still be detected. This assumption does not hold for all watermarking methods, which limits the performance of residual-based approaches on several watermakring algorithms.
 
 We will include a more detailed discussion of this observation in our paper soon.
 
