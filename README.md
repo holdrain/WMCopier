@@ -93,7 +93,7 @@ Train the watermarked unconditional diffusion model:
 bash scripts/train.sh
 ```
 
-Alternatively, you can use our pretrained model (trained on 5,000 watermarked images). Download the checkpoint package from [Google Drive](https://drive.google.com/file/d/1uROeoV2l3dcyGCGS-vB3_pv_UXCKymEM/view?usp=sharing).
+Alternatively, you can use our pretrained model (trained on 5,000 watermarked images). Download the checkpoint package from [Google Drive](https://drive.google.com/file/d/1bS7VOYdvV_5TcoTPYvf3eDEZg5tRjQ4z/view?usp=sharing).
 
 After downloading, unzip the file and place the extracted folders so that your project structure looks like:
 
