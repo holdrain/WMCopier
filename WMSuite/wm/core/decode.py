@@ -36,7 +36,7 @@ def load_models(method, device):
         raise ValueError(f"Unsupported method: {method}")
     
 
-def decode_single_image(image_tensor, target_message_tensor, device, decoder, tolerant_bits):
+def decode_single_image(image_tensor, target_message_tensor, method, device, decoder, tolerant_bits):
     """
     Decode watermark from a single transformed image tensor.
 
@@ -59,7 +59,10 @@ def decode_single_image(image_tensor, target_message_tensor, device, decoder, to
 
     # Decode
     decoded_message = decoder(image_tensor)
-    decoded_message = decoded_message.round().clip(0, 1).long()
+    if method != "stegastamp":
+        decoded_message = decoded_message.round().clip(0, 1).long()
+    else:
+        decoded_message = (decoded_message > 0).long()
 
     # Compare with target
     diff = (decoded_message != target_message_tensor).float()
@@ -96,6 +99,7 @@ def decode_from_folder(opt, decoder):
                 bitacc, is_tp, decoded_msg = decode_single_image(
                     image_tensor=image_tensor,
                     target_message_tensor=target_message_tensor,
+                    method=opt.method,
                     device=opt.device,
                     decoder=decoder,
                     tolerant_bits=tolerant_bits
