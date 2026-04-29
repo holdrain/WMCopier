@@ -114,9 +114,6 @@ For large-scale experiments on an entire image folder, run:
 bash scripts/attack.sh
 ```
 
----
-### 4. Attack on Real-World Watermark
-
 We do not publish the checkpoints here, following discussions with Amazon’s AGI Team. For more details, please refer to the "Broad Impact" section in our paper.
 
 
