@@ -4,7 +4,7 @@ from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 import random
-from src.utils.helpers import set_seeds
+from utils.helpers import set_seeds
 
 
 class CustomImageFolder(Dataset):
