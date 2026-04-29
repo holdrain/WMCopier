@@ -12,9 +12,14 @@ from torch.utils.data import DataLoader
 from torchvision import transforms, utils
 from tqdm.auto import tqdm
 
-from src.dataset import CustomImageFolder
-from src.utils.helpers import *
-from src.setting import beta_schedule_choices
+from dataset import CustomImageFolder
+from utils.helpers import *
+from setting import beta_schedule_choices
+
+def cycle_dataloader(dataloader):
+    while True:
+        for bc in dataloader:
+            yield bc
 
 def get_lr_scheduler(optimizer, scheduler_type, **kwargs):
     """
@@ -199,7 +204,7 @@ class Trainer:
         )
 
         dl = self.accelerator.prepare(dl)
-        self.dl = cycle(dl)
+        self.dl_iter = cycle_dataloader(self.dl)
 
         # optimizer and lr_scheduler
         self.opt = AdamW(diffusion_model.parameters(), lr=train_lr, betas=adam_betas)
@@ -286,7 +291,7 @@ class Trainer:
 
                 total_loss = 0.0
                 for _ in range(self.gradient_accumulate_every):
-                    data = next(self.dl).to(device)
+                    data = next(self.dl_iter).to(device)
                     noise = torch.randn_like(data).to(device)
                     with self.accelerator.autocast():
                         timesteps = torch.randint(0,self.noise_scheduler.num_train_timesteps,(data.shape[0],),
